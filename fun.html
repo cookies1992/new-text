@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta :charset="UTF-8">
+    <title>game1</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container{
+        position: relative;
+        margin: auto;
+        width: 800px;
+        height: 600px;
+        background-color: aqua;
+    }
+    .game{
+        position: relative;
+        margin: auto;
+        width: 200px;
+        height: 539px;
+        background-color: chocolate;
+    }
+    #imgShow{
+        
+    }
+    .barr{
+        width: 250px;
+        height: 40px;
+        border: 1px solid black;
+    }
+    .smallBarr{
+        height: 39px;
+        border: 1px;
+        background-color: red;
+        overflow: hidden;
+
+     }
+</style>
+<script src="work/meidiwangye/vue/vue.min.js"></script>
+<body>
+    <div class="container" id="container">
+        <div class="barr">
+            <div class="smallBarr" :style="{width: activeWidth + 'px'}">
+
+            </div>
+        </div>
+        <button @click="changeWidth">点击蓄力</button>
+        <button @click="resetGame">重新开始</button>
+        <div class="game">
+            <div id="imgShow">
+                <img :src="imgsrc" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#container',
+        data:{
+            imgsrc:'bag.png',
+            activeWidth:0
+        },
+        methods:{
+            changeWidth:function () {
+                if(this.activeWidth < 250){
+                    this.activeWidth += 50;
+                }
+                else {
+                    this.changeImg()
+                }
+            },
+            changeImg:function () {
+                this.imgsrc = 'bag-burst.png';
+            },
+            resetGame:function () {
+                this.activeWidth = 0;
+                this.imgsrc = 'bag.png';
+            }
+        }
+    })
+</script>
+</html>
